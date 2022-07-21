@@ -1,0 +1,35 @@
+.bg-green{
+    background-color: #2873EE;
+}
+
+header {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+    h1{
+        font-weight: 700;
+    }
+    h2{
+        font-weight: 500;
+    }
+}
+.header__buttons {
+        display: flex;
+        margin: 2px 0px;
+        justify-content: space-evenly;
+    }
+.header__image {
+        margin-top: 19px;
+        margin-bottom: 19px;
+        border-radius: 8px;
+        box-shadow: 5px 5px 15px 5px #333333;
+    }
+
+
+footer {
+    background-color: #111;
+    color: #fff;
+    text-align: center;
+    padding: 4px;
+    margin-top: 15px;
+}
