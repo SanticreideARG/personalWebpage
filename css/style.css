@@ -58,6 +58,9 @@ p {
   .leftColumn {
     margin-bottom: 10px; } }
 
+.softBold, .leftColumn, .rightColumn {
+  font-weight: 700; }
+
 .leftColumn {
   margin-right: 25px; }
 
@@ -75,7 +78,14 @@ p {
   font-family: 'Oxygen', sans-serif; }
 
 ul {
-  list-style-image: none; }
+  list-style: none; }
+
+a {
+  text-decoration: none;
+  color: black; }
+  a :visited {
+    color: black;
+    text-decoration: none; }
 
 .bg-green {
   background-color: #2873EE; }
