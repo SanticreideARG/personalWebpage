@@ -68,7 +68,7 @@ p {
   background-color: #ccc;
   display: flex;
   flex-direction: column;
-  border-radius: 6px;
+  border-radius: 3px;
   padding: 8px; }
 
 .bold {
@@ -102,7 +102,7 @@ a {
 .header__image {
   margin-top: 19px;
   margin-bottom: 19px;
-  border-radius: 8px;
+  border-radius: 3px;
   box-shadow: 5px 5px 15px 5px #333333; }
 
 .hovercards:hover, footer img:hover, footer a:hover {
