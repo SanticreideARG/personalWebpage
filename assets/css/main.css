@@ -2142,7 +2142,7 @@ input, select, textarea {
 			}
 
 			.image.avatar img {
-				border-radius: 100%;
+				border-radius: 4%;
 				width: 100%;
 			}
 
@@ -3121,7 +3121,10 @@ input, select, textarea {
 	@media screen and (max-width: 736px) {
 
 		/* Basic */
-
+		.image.avatar img{
+			width: 160%;
+			margin-left: -30px;
+		}
 			h1 {
 				font-size: 1.5em;
 			}
