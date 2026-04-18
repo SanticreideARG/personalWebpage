@@ -3287,3 +3287,85 @@ input, select, textarea {
     opacity: 0.8;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
+
+/* Custom page refinements */
+body, input, select, textarea {
+    color: #333333;
+    font-size: 16px;
+    line-height: 1.65;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #222222;
+}
+
+#main section {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+
+.aboutMe {
+    background: #fbfbfb;
+    border-radius: 1rem;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.9rem;
+    flex-wrap: wrap;
+}
+
+.detail-label {
+    font-weight: 700;
+    color: #444444;
+    min-width: 110px;
+}
+
+.flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.flag img {
+    width: 30px;
+    height: auto;
+    border-radius: 0.35rem;
+    display: inline-block;
+}
+
+.divider {
+    width: 100%;
+    height: 0;
+    margin: 2rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    opacity: 0.85;
+}
+
+a {
+    color: #327a6e;
+    border-bottom: 1px solid rgba(50, 122, 110, 0.35);
+}
+
+a:hover {
+    color: #1f5446;
+    border-bottom-color: transparent;
+}
+
+.button,
+input[type="button"],
+input[type="submit"] {
+    border-radius: 999px;
+    border-width: 2px;
+}
+
+.button.primary,
+input[type="button"].primary,
+input[type="submit"].primary {
+    background-color: #327a6e;
+    border-color: #327a6e;
+}
