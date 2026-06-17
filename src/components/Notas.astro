@@ -1,0 +1,29 @@
+---
+import { notas } from '../data/notas.js';
+---
+<section class="notas" id="notas">
+  <div class="s-eyebrow reveal">Notas</div>
+  <h2 class="s-title reveal">Cosas que <em>voy aprendiendo.</em></h2>
+  <p class="s-body reveal">Apuntes sueltos sobre lo que construyo, rompo y vuelvo a armar. Sin pretensión de tutorial — más bien un cuaderno público.</p>
+  <div class="notas-grid reveal">
+    {notas.map((n) => (
+      <a href="#" class="nota-card" onclick={`openNote('${n.id}');return false;`}>
+        <div class="nota-date">{n.label}</div>
+        <h4>{n.title}</h4>
+        <p>{n.excerpt}</p>
+        <span class="nota-more">leer →</span>
+      </a>
+    ))}
+  </div>
+  <p class="notas-soon reveal">Estas notas las voy escribiendo de a poco — tocá cualquiera para leerla completa.</p>
+
+  <div id="notas-sources" style="display:none">
+    {notas.map((n) => (
+      <div id={n.id}>
+        <div class="vp-meta">{n.meta}</div>
+        <h2>{n.title}</h2>
+        <Fragment set:html={n.body} />
+      </div>
+    ))}
+  </div>
+</section>

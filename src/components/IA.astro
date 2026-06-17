@@ -1,0 +1,45 @@
+---
+const bloques = [
+  {
+    num: '01',
+    title: 'Agentes de frontera',
+    desc: 'Integración de los modelos líderes — Claude, GPT y Gemini — al producto o al flujo de trabajo. La potencia de punta cuando el caso lo justifica.',
+    tags: ['Claude', 'GPT', 'Gemini'],
+  },
+  {
+    num: '02',
+    title: 'Spec-Driven Development',
+    desc: 'Desarrollo guiado por especificación: primero el qué y el cómo, escrito y acordado; después la implementación. Menos retrabajo y resultados que se pueden auditar.',
+    tags: ['Spec-first', 'Ops', 'Workflows'],
+  },
+  {
+    num: '03',
+    title: 'Agentes internos',
+    desc: 'Implementación de agentes propios — Open Claw y Hermes — para tareas internas: orquestación, soporte y automatización con contexto real del negocio.',
+    tags: ['Open Claw', 'Hermes'],
+  },
+  {
+    num: '04',
+    title: 'IA local y privada',
+    desc: 'Infraestructura de IA on-premise con Ollama y modelos libres. Tus datos no salen de tu servidor — privacidad y costo bajo control.',
+    tags: ['Ollama', 'Mistral', 'Qwen', 'Llama'],
+  },
+];
+---
+<section class="ia" id="ia">
+  <div class="s-eyebrow reveal">Inteligencia Artificial</div>
+  <h2 class="s-title reveal">Soluciones para cada <em>necesidad.</em></h2>
+  <p class="s-body reveal">La IA no es una sola herramienta ni una sola receta. Según el caso, integro modelos de frontera, armo agentes a medida o monto infraestructura local — lo que el problema (y el presupuesto) pida.</p>
+  <div class="ia-grid reveal">
+    {bloques.map((b) => (
+      <div class="ia-card">
+        <div class="ia-num">{b.num}</div>
+        <h3>{b.title}</h3>
+        <p>{b.desc}</p>
+        <div class="ia-tags">
+          {b.tags.map((t) => (<span class="ia-tag">{t}</span>))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

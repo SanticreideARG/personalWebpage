@@ -1,22 +1,24 @@
 {
-  "name": "bstemplate",
-  "version": "1.0.0",
-  "description": "One UX UI Practice Bootstrap Template Page",
-  "main": "index.js",
+  "name": "personal-webpage",
+  "version": "3.0.0",
+  "description": "Sitio web personal de Santiago Creide — Raíz Digital (Astro)",
+  "type": "module",
   "scripts": {
-    "build": "node-sass --include-path sass ./sass/index.scss ./css/style.css -w"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SanticreideARG/BootstrapTemplate.git"
+    "url": "git+https://github.com/SanticreideARG/personalWebpage.git"
   },
   "author": "Santiago Creide",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SanticreideARG/BootstrapTemplate/issues"
+  "dependencies": {
+    "@vercel/postgres": "^0.10.0"
   },
-  "homepage": "https://github.com/SanticreideARG/BootstrapTemplate#readme",
   "devDependencies": {
-    "node-sass": "^7.0.1"
+    "astro": "^4.16.18"
   }
 }

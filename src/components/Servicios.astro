@@ -1,0 +1,27 @@
+---
+const servicios = [
+  { num: '01', icon: '⚙️', title: 'Automatización de Workflow', desc: 'Eliminamos tareas manuales y repetitivas. Pedidos, notificaciones, tickets, reportes — todo fluye solo.', tag: 'Especialidad core', dest: true },
+  { num: '02', icon: '📊', title: 'Gestión Integral & CRM', desc: 'Panel único para administrar clientes, pedidos, métricas y operaciones. Toda la información en un solo lugar.', tag: 'Filament · Laravel' },
+  { num: '03', icon: '💬', title: 'WhatsApp & Chatbots', desc: 'Integración de WhatsApp Business al sistema. Bots con contexto real del negocio, atención 24/7 sin intervención.', tag: 'n8n · Evolution API', dest: true },
+  { num: '04', icon: '📣', title: 'Marketing Digital Integrado', desc: 'Campañas por WhatsApp, email y redes sociales conectadas al CRM. Segmentación real por comportamiento de compra.', tag: 'Redes · Email' },
+  { num: '05', icon: '🏗️', title: 'Asesoría Funcional', desc: 'Análisis del negocio antes del código. Diseño de flujos, relevamiento de procesos y arquitectura de solución a medida.', tag: 'Consultoría' },
+  { num: '06', icon: '🖥️', title: 'Infraestructura & DevOps', desc: 'Servidores Linux, Docker, deployment, backups automáticos. Tu sistema corre en tu propio hierro, sin depender de la nube.', tag: 'Linux · Docker' },
+];
+---
+<section class="servicios" id="servicios">
+  <div class="servicios-intro">
+    <div class="reveal"><div class="s-eyebrow">En qué trabajo</div><h2 class="s-title">Y si necesitás una mano, <em>esto hago.</em></h2></div>
+    <div class="reveal"><p class="s-body" style="margin-top:0">Además de mis proyectos personales, me dedico profesionalmente a esto. Si tenés una empresa o una idea dando vueltas, capaz algo de acá te sirva. Me interesa <strong style="color:var(--blanco)">entender el problema antes que la herramienta</strong> — el mejor sistema es el que la gente realmente usa.</p></div>
+  </div>
+  <div class="servicios-grid reveal">
+    {servicios.map((s) => (
+      <div class="servicio-card">
+        <div class="servicio-num">{s.num}</div>
+        <span class="servicio-icon">{s.icon}</span>
+        <h3>{s.title}</h3>
+        <p>{s.desc}</p>
+        <span class={'servicio-tag' + (s.dest ? ' dest' : '')}>{s.tag}</span>
+      </div>
+    ))}
+  </div>
+</section>

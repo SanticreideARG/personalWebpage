@@ -1,0 +1,21 @@
+---
+import { galeria } from '../data/proyectos.js';
+---
+<section class="granja" id="galeria">
+  <div class="granja-header">
+    <div class="reveal">
+      <div class="granja-eyebrow">Galería</div>
+      <h2 class="granja-title">Fuera de la <em>pantalla.</em></h2>
+    </div>
+    <p class="granja-desc reveal">Un poco de lo que hay del otro lado del teclado: la Patagonia, el taller, los momentos. <span style="color:var(--naranja-suave)">(imágenes de muestra — reemplazá por tus fotos reales en <code>public/images/gallery/</code>)</span></p>
+  </div>
+  <div class="granja-masonry reveal">
+    {galeria.map((g) => (
+      <div class="granja-item" onclick="openLightbox(this)">
+        <img src={g.src} alt={g.caption} loading="lazy" />
+        <div class="granja-item-overlay"><span class="granja-item-caption">{g.caption}</span></div>
+      </div>
+    ))}
+  </div>
+  <p class="granja-note">"El mejor sistema es el que la gente realmente usa."</p>
+</section>

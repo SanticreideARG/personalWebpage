@@ -1,0 +1,182 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import ContactModal from '../components/ContactModal.astro';
+import Viewer from '../components/Viewer.astro';
+
+const {
+  title = 'Santiago Creide · Desarrollador y técnico patagónico',
+  description = 'Santiago Creide — desarrollador y técnico desde Neuquén, Patagonia. Automatización, sistemas de gestión y proyectos personales.',
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content="Santiago Creide" />
+  <link rel="icon" type="image/png" href="/assets/logos/Fabicon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:locale" content="es_AR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script is:inline>
+    /* Evita el "flash": aplica el tema guardado antes de pintar. Default: oscuro. */
+    (function () {
+      try {
+        var t = localStorage.getItem('tema');
+        if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <Nav />
+  <slot />
+  <Footer />
+  <ContactModal />
+  <Viewer />
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">[ esc ] cerrar</span>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
+  <script is:inline>
+    /* ===== Cursor custom ===== */
+    const cursor = document.getElementById('cursor'), ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+    function animateRing(){ rx += (mx - rx) * .12; ry += (my - ry) * .12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animateRing); }
+    animateRing();
+    document.querySelectorAll('a,button,.granja-item').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.style.width = '16px'; cursor.style.height = '16px'; ring.style.width = '52px'; ring.style.height = '52px'; });
+      el.addEventListener('mouseleave', () => { cursor.style.width = '8px'; cursor.style.height = '8px'; ring.style.width = '32px'; ring.style.height = '32px'; });
+    });
+
+    /* ===== Reveal al hacer scroll ===== */
+    const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ===== Smooth scroll para anclas ===== */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => { const t = document.querySelector(a.getAttribute('href')); if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); } });
+    });
+
+    /* ===== Lightbox (galería / capturas) ===== */
+    function openLightbox(el){ document.getElementById('lightboxImg').src = el.querySelector('img').src; document.getElementById('lightbox').classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeLightbox(){ document.getElementById('lightbox').classList.remove('active'); document.body.style.overflow = ''; }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    /* ===== Toggle de tema ===== */
+    (function () {
+      const btn = document.getElementById('themeToggle');
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        try { localStorage.setItem('tema', next); } catch (e) {}
+      });
+    })();
+
+    /* ===== Modal de consulta anónima ===== */
+    const cModal = document.getElementById('contactModal');
+    const cForm = document.getElementById('contactForm');
+    const cMsg = document.getElementById('cf-msg');
+    const cSubmit = document.getElementById('cf-submit');
+    let cOpenedAt = 0, cExpected = 7;
+    function openContactModal(){
+      const a = Math.floor(Math.random() * 6) + 2, b = Math.floor(Math.random() * 6) + 2;
+      cExpected = a + b;
+      document.getElementById('cf-human-q').textContent = 'Verificación: ¿cuánto es ' + a + ' + ' + b + '?';
+      document.getElementById('cf-human').value = '';
+      setMsg('', 'hint');
+      cModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      cOpenedAt = Date.now();
+      cSubmit.disabled = true;
+      setTimeout(() => { cSubmit.disabled = false; }, 3000);
+      setTimeout(() => document.getElementById('cf-nombre').focus(), 350);
+    }
+    function closeContactModal(){ cModal.classList.remove('active'); document.body.style.overflow = ''; }
+    function setMsg(t, cls){ cMsg.className = 'modal-msg ' + (cls || 'hint'); cMsg.textContent = t; }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && cModal.classList.contains('active')) closeContactModal(); });
+    cForm.addEventListener('submit', async e => {
+      e.preventDefault();
+      const nombre = cForm.nombre.value.trim();
+      const email = cForm.email.value.trim();
+      const mensaje = cForm.mensaje.value.trim();
+      const human = cForm.human.value.trim();
+      const website = cForm.website.value;
+      const elapsed = Date.now() - cOpenedAt;
+      if (website) { closeContactModal(); return; }
+      if (elapsed < 3000) { setMsg('Esperá un segundo antes de enviar.', 'err'); return; }
+      if (!nombre || !email || !mensaje) { setMsg('Completá nombre, email y mensaje.', 'err'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setMsg('El email no parece válido.', 'err'); return; }
+      if (parseInt(human, 10) !== cExpected) { setMsg('La verificación es incorrecta. Probá de nuevo.', 'err'); return; }
+      cSubmit.disabled = true; setMsg('Enviando…', 'hint');
+      try {
+        const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ nombre, email, mensaje, website, human, elapsed }) });
+        if (res.ok) {
+          setMsg('¡Listo! Tu consulta llegó. Te respondo pronto.', 'ok');
+          cForm.reset();
+          setTimeout(closeContactModal, 1800);
+        } else {
+          const data = await res.json().catch(() => ({}));
+          setMsg(data.error || 'No se pudo enviar. Probá por mail: santi.creide@gmail.com', 'err');
+          cSubmit.disabled = false;
+        }
+      } catch (err) {
+        setMsg('No hay servidor de mensajes activo. Escribime a santi.creide@gmail.com', 'err');
+        cSubmit.disabled = false;
+      }
+    });
+
+    /* ===== Visor (certificados / CV / notas) ===== */
+    const viewer = document.getElementById('viewer');
+    const viewerBody = document.getElementById('viewerBody');
+    const viewerTitle = document.getElementById('viewerTitle');
+    function showViewer(){ viewer.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeViewer(){ viewer.classList.remove('active'); document.body.style.overflow = ''; setTimeout(() => { viewerBody.innerHTML = ''; viewerBody.className = 'viewer-body'; }, 350); }
+    function openFrame(src, title, isPdf){
+      viewerTitle.textContent = title;
+      const url = isPdf ? src + '#toolbar=0&navpanes=0&scrollbar=0&view=FitH' : src;
+      viewerBody.className = 'viewer-body protected';
+      const f = document.createElement('iframe');
+      f.src = url; f.title = title;
+      viewerBody.innerHTML = ''; viewerBody.appendChild(f);
+      showViewer();
+    }
+    function openNote(id, title){
+      const s = document.getElementById(id); if (!s) return;
+      const h = s.querySelector('h2');
+      viewerTitle.textContent = title || (h ? h.textContent : 'Nota');
+      viewerBody.className = 'viewer-body';
+      viewerBody.innerHTML = '<article class="viewer-prose">' + s.innerHTML + '</article>';
+      viewerBody.scrollTop = 0;
+      showViewer();
+    }
+    viewerBody.addEventListener('contextmenu', e => { if (viewerBody.classList.contains('protected')) e.preventDefault(); });
+    viewerBody.addEventListener('dragstart', e => { if (viewerBody.classList.contains('protected')) e.preventDefault(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && viewer.classList.contains('active')) closeViewer(); });
+    document.querySelectorAll('.cert-card').forEach(a => {
+      const href = a.getAttribute('href') || '';
+      if (href.toLowerCase().endsWith('.pdf')) {
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          const issuer = a.querySelector('.cert-issuer');
+          const name = a.querySelector('.cert-name');
+          const title = ((issuer ? issuer.textContent + ' · ' : '') + (name ? name.textContent : 'Certificado'));
+          openFrame(href, title, true);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+---
+import { grimorio, poketgotchi } from '../data/proyectos.js';
+---
+<section class="proyectos" id="proyectos">
+  <div class="s-eyebrow reveal">Proyectos</div>
+  <h2 class="s-title reveal">Casos de uso <em>reales.</em></h2>
+  <div class="proyectos-grid reveal">
+    <div class="proyecto-featured">
+      <span class="proyecto-badge">En desarrollo · 2025</span>
+      <h3>Verdeo CRM</h3>
+      <p>Sistema integral de gestión para empresa de delivery de viandas saludables con operaciones en cuatro ciudades argentinas. Automatización completa del workflow desde el pedido hasta la entrega.</p>
+      <div class="proyecto-stack"><span class="stack-tag">Laravel 11</span><span class="stack-tag">Filament 3</span><span class="stack-tag">Livewire</span><span class="stack-tag">Alpine.js</span><span class="stack-tag">Tailwind</span><span class="stack-tag">n8n</span><span class="stack-tag">WhatsApp API</span><span class="stack-tag">MySQL</span><span class="stack-tag">Docker</span></div>
+    </div>
+    <div class="proyectos-side">
+      <a href="https://santicreidearg.github.io/Suites-Manager/" target="_blank" class="proyecto-card"><h4>Suites Manager</h4><p>SPA para administración de alojamientos turísticos. JavaScript Vanilla.</p><div class="arrow">→ ver proyecto</div></a>
+      <a href="https://zigzagpatagonia.netlify.app/" target="_blank" class="proyecto-card"><h4>Zig Zag Patagonia</h4><p>Sitio web para empresa de accesorios deportivos en San Martín de los Andes.</p><div class="arrow">→ ver proyecto</div></a>
+      <a href="https://smunder.netlify.app/" target="_blank" class="proyecto-card"><h4>SM Under</h4><p>Organización de eventos Hip Hop · Radio · Galería.</p><div class="arrow">→ ver proyecto</div></a>
+    </div>
+  </div>
+  <div class="proyectos-sub reveal">
+    <h3 class="proyectos-sub-head">Proyectos <em>personales.</em></h3>
+    <p class="proyectos-sub-desc">Lo que construyo cuando nadie me lo pide — para aprender, jugar y probar ideas. Acá la tecnología es la excusa, no el objetivo.</p>
+    <div class="personal-showcase">
+      <article class="pers-featured">
+        <div class="pers-featured-shots">
+          {grimorio.shots.map((s) => (
+            <div class="pers-shot" onclick="openLightbox(this)"><img src={s} alt={grimorio.name} loading="lazy" /></div>
+          ))}
+        </div>
+        <div class="pers-featured-body">
+          <span class="proyecto-badge">{grimorio.badge}</span>
+          <h4>{grimorio.name}</h4>
+          <p>{grimorio.desc}</p>
+          <div class="personal-links">
+            <a href={grimorio.live} target="_blank" class="personal-link live">▶ Jugar</a>
+            <a href={grimorio.repo} target="_blank" class="personal-link repo">⟢ Código</a>
+          </div>
+        </div>
+      </article>
+      <article class="pers-compact">
+        <div class="pers-compact-shot" onclick="openLightbox(this)"><img src={poketgotchi.shots[0]} alt={poketgotchi.name} loading="lazy" /></div>
+        <div class="pers-compact-body">
+          <span class="pers-mini-tag">{poketgotchi.tag}</span>
+          <h4>{poketgotchi.name}</h4>
+          <p>{poketgotchi.desc}</p>
+          <div class="personal-links">
+            <a href={poketgotchi.live} target="_blank" class="personal-link live">▶ Probar</a>
+            <a href={poketgotchi.repo} target="_blank" class="personal-link repo">⟢ Código</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>

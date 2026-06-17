@@ -1,0 +1,34 @@
+---
+---
+<div class="modal-overlay" id="contactModal" onclick="if(event.target===this)closeContactModal()">
+  <div class="modal-card">
+    <button type="button" class="modal-close" onclick="closeContactModal()">[ esc ] cerrar</button>
+    <div class="modal-eyebrow">Consulta anónima</div>
+    <h3>Contame qué <em>necesitás.</em></h3>
+    <p class="modal-sub">Dejá tu mensaje y te respondo por mail. No hace falta que sea formal — con una idea aproximada alcanza.</p>
+    <form id="contactForm" autocomplete="off" novalidate>
+      <div class="field">
+        <label for="cf-nombre">Nombre</label>
+        <input type="text" id="cf-nombre" name="nombre" maxlength="80" required />
+      </div>
+      <div class="field">
+        <label for="cf-email">Email</label>
+        <input type="email" id="cf-email" name="email" maxlength="120" required />
+      </div>
+      <div class="field">
+        <label for="cf-mensaje">Mensaje</label>
+        <textarea id="cf-mensaje" name="mensaje" maxlength="2000" required></textarea>
+      </div>
+      <div class="field honeypot" aria-hidden="true">
+        <label for="cf-website">No completar este campo</label>
+        <input type="text" id="cf-website" name="website" tabindex="-1" autocomplete="off" />
+      </div>
+      <div class="modal-human">
+        <label for="cf-human" id="cf-human-q">Verificación: ¿cuánto es 3 + 4?</label>
+        <input type="text" id="cf-human" name="human" inputmode="numeric" maxlength="3" autocomplete="off" />
+      </div>
+      <button type="submit" class="btn-primary modal-submit" id="cf-submit">Enviar consulta</button>
+      <div class="modal-msg hint" id="cf-msg" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</div>

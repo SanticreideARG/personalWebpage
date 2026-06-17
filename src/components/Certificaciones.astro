@@ -1,0 +1,16 @@
+---
+import { certificados } from '../data/certificados.js';
+---
+<section class="certificaciones" id="certificaciones">
+  <div class="s-eyebrow reveal">Certificaciones</div>
+  <h2 class="s-title reveal">Papeles que respaldan el <em>camino.</em></h2>
+  <div class="cert-grid reveal">
+    {certificados.map((c) => (
+      <a href={c.href} target="_blank" class="cert-card">
+        <div class="cert-issuer">{c.issuer}</div>
+        <div class="cert-name">{c.name}</div>
+        <div class="cert-meta"><span>{c.meta}</span><span class="cert-open">{c.action}</span></div>
+      </a>
+    ))}
+  </div>
+</section>
