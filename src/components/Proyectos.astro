@@ -2,24 +2,24 @@
 import { grimorio, pokerTournament, poketgotchi } from '../data/proyectos.js';
 ---
 <section class="proyectos" id="proyectos">
-  <div class="s-eyebrow reveal">Proyectos</div>
-  <h2 class="s-title reveal">Casos de uso <em>reales.</em></h2>
+  <div class="s-eyebrow reveal" data-en="Projects">Proyectos</div>
+  <h2 class="s-title reveal" data-en="Real <em>use cases.</em>">Casos de uso <em>reales.</em></h2>
   <div class="proyectos-grid reveal">
     <div class="proyecto-featured">
-      <span class="proyecto-badge">En desarrollo · 2025</span>
+      <span class="proyecto-badge" data-en="In development · 2025">En desarrollo · 2025</span>
       <h3>Verdeo CRM</h3>
-      <p>Sistema integral de gestión para empresa de delivery de viandas saludables con operaciones en cuatro ciudades argentinas. Automatización completa del workflow desde el pedido hasta la entrega.</p>
+      <p data-en="Full management system for a healthy meal delivery company operating in four Argentine cities. Complete workflow automation from order to delivery.">Sistema integral de gestión para empresa de delivery de viandas saludables con operaciones en cuatro ciudades argentinas. Automatización completa del workflow desde el pedido hasta la entrega.</p>
       <div class="proyecto-stack"><span class="stack-tag">Laravel 11</span><span class="stack-tag">Filament 3</span><span class="stack-tag">Livewire</span><span class="stack-tag">Alpine.js</span><span class="stack-tag">Tailwind</span><span class="stack-tag">n8n</span><span class="stack-tag">WhatsApp API</span><span class="stack-tag">MySQL</span><span class="stack-tag">Docker</span></div>
     </div>
     <div class="proyectos-side">
-      <a href="https://santicreidearg.github.io/Suites-Manager/" target="_blank" class="proyecto-card"><h4>Suites Manager</h4><p>SPA para administración de alojamientos turísticos. JavaScript Vanilla.</p><div class="arrow">→ ver proyecto</div></a>
-      <a href="https://zigzagpatagonia.netlify.app/" target="_blank" class="proyecto-card"><h4>Zig Zag Patagonia</h4><p>Sitio web para empresa de accesorios deportivos en San Martín de los Andes.</p><div class="arrow">→ ver proyecto</div></a>
-      <a href="https://smunder.netlify.app/" target="_blank" class="proyecto-card"><h4>SM Under</h4><p>Organización de eventos Hip Hop · Radio · Galería.</p><div class="arrow">→ ver proyecto</div></a>
+      <a href="https://santicreidearg.github.io/Suites-Manager/" target="_blank" class="proyecto-card"><h4>Suites Manager</h4><p data-en="SPA for managing tourist accommodations. Vanilla JavaScript.">SPA para administración de alojamientos turísticos. JavaScript Vanilla.</p><div class="arrow" data-en="→ view project">→ ver proyecto</div></a>
+      <a href="https://zigzagpatagonia.netlify.app/" target="_blank" class="proyecto-card"><h4>Zig Zag Patagonia</h4><p data-en="Website for a sports accessories company in San Martín de los Andes.">Sitio web para empresa de accesorios deportivos en San Martín de los Andes.</p><div class="arrow" data-en="→ view project">→ ver proyecto</div></a>
+      <a href="https://smunder.netlify.app/" target="_blank" class="proyecto-card"><h4>SM Under</h4><p data-en="Hip Hop event organization · Radio · Gallery.">Organización de eventos Hip Hop · Radio · Galería.</p><div class="arrow" data-en="→ view project">→ ver proyecto</div></a>
     </div>
   </div>
   <div class="proyectos-sub reveal">
-    <h3 class="proyectos-sub-head">Proyectos <em>personales.</em></h3>
-    <p class="proyectos-sub-desc">Lo que construyo cuando nadie me lo pide — para aprender, jugar y probar ideas. Acá la tecnología es la excusa, no el objetivo.</p>
+    <h3 class="proyectos-sub-head" data-en="Personal <em>projects.</em>">Proyectos <em>personales.</em></h3>
+    <p class="proyectos-sub-desc" data-en="What I build when no one asks me to — to learn, play and test ideas. Here technology is the excuse, not the goal.">Lo que construyo cuando nadie me lo pide — para aprender, jugar y probar ideas. Acá la tecnología es la excusa, no el objetivo.</p>
     <div class="personal-showcase">
       <article class="pers-featured pers-grim">
         <div class="pers-featured-shots">
@@ -28,12 +28,12 @@ import { grimorio, pokerTournament, poketgotchi } from '../data/proyectos.js';
           ))}
         </div>
         <div class="pers-featured-body">
-          <span class="proyecto-badge">{grimorio.badge}</span>
+          <span class="proyecto-badge" data-en={grimorio.badge_en}>{grimorio.badge}</span>
           <h4>{grimorio.name}</h4>
-          <p>{grimorio.desc}</p>
+          <p data-en={grimorio.desc_en}>{grimorio.desc}</p>
           <div class="personal-links">
-            <a href={grimorio.live} target="_blank" class="personal-link live">▶ Jugar</a>
-            <a href={grimorio.repo} target="_blank" class="personal-link repo">⟢ Código</a>
+            <a href={grimorio.live} target="_blank" class="personal-link live" data-en="▶ Play">▶ Jugar</a>
+            <a href={grimorio.repo} target="_blank" class="personal-link repo" data-en="⟢ Code">⟢ Código</a>
           </div>
         </div>
       </article>
@@ -44,24 +44,24 @@ import { grimorio, pokerTournament, poketgotchi } from '../data/proyectos.js';
           ))}
         </div>
         <div class="pers-featured-body">
-          <span class="proyecto-badge">{pokerTournament.badge}</span>
+          <span class="proyecto-badge" data-en={pokerTournament.badge_en}>{pokerTournament.badge}</span>
           <h4>{pokerTournament.name}</h4>
-          <p>{pokerTournament.desc}</p>
+          <p data-en={pokerTournament.desc_en}>{pokerTournament.desc}</p>
           <div class="personal-links">
-            <a href={pokerTournament.live} target="_blank" class="personal-link live">▶ Abrir</a>
-            <a href={pokerTournament.repo} target="_blank" class="personal-link repo">⟢ Código</a>
+            <a href={pokerTournament.live} target="_blank" class="personal-link live" data-en="▶ Open">▶ Abrir</a>
+            <a href={pokerTournament.repo} target="_blank" class="personal-link repo" data-en="⟢ Code">⟢ Código</a>
           </div>
         </div>
       </article>
       <article class="pers-compact pers-poket">
         <div class="pers-compact-shot" onclick="openLightbox(this)"><img src={poketgotchi.shots[0]} alt={poketgotchi.name} loading="lazy" /></div>
         <div class="pers-compact-body">
-          <span class="pers-mini-tag">{poketgotchi.tag}</span>
+          <span class="pers-mini-tag" data-en={poketgotchi.tag_en}>{poketgotchi.tag}</span>
           <h4>{poketgotchi.name}</h4>
-          <p>{poketgotchi.desc}</p>
+          <p data-en={poketgotchi.desc_en}>{poketgotchi.desc}</p>
           <div class="personal-links">
-            <a href={poketgotchi.live} target="_blank" class="personal-link live">▶ Probar</a>
-            <a href={poketgotchi.repo} target="_blank" class="personal-link repo">⟢ Código</a>
+            <a href={poketgotchi.live} target="_blank" class="personal-link live" data-en="▶ Try">▶ Probar</a>
+            <a href={poketgotchi.repo} target="_blank" class="personal-link repo" data-en="⟢ Code">⟢ Código</a>
           </div>
         </div>
       </article>

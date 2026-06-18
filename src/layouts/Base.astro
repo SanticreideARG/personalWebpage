@@ -85,6 +85,39 @@ const {
       });
     })();
 
+    /* ===== i18n (ESP / ENG) =====
+       Cada elemento traducible lleva data-en con su versión en inglés.
+       El español es el contenido natural del elemento. */
+    function curLang(){ return document.documentElement.getAttribute('lang') === 'en' ? 'en' : 'es'; }
+    function L(es, en){ return curLang() === 'en' ? en : es; }
+    function applyLang(lang){
+      document.querySelectorAll('[data-en]').forEach(el => {
+        if (el.dataset.es === undefined) el.dataset.es = el.innerHTML;
+        el.innerHTML = (lang === 'en') ? el.dataset.en : el.dataset.es;
+      });
+      document.querySelectorAll('[data-en-ph]').forEach(el => {
+        if (el.dataset.esPh === undefined) el.dataset.esPh = el.getAttribute('placeholder') || '';
+        el.setAttribute('placeholder', (lang === 'en') ? el.dataset.enPh : el.dataset.esPh);
+      });
+      document.documentElement.setAttribute('lang', lang);
+      const label = document.getElementById('langLabel');
+      if (label) label.textContent = (lang === 'en') ? 'ENG' : 'ESP';
+    }
+    (function(){
+      let lang = 'es';
+      try { const s = localStorage.getItem('idioma'); if (s === 'en' || s === 'es') lang = s; } catch (e) {}
+      applyLang(lang);
+    })();
+    (function(){
+      const btn = document.getElementById('langToggle');
+      if (!btn) return;
+      btn.addEventListener('click', () => {
+        const next = curLang() === 'en' ? 'es' : 'en';
+        applyLang(next);
+        try { localStorage.setItem('idioma', next); } catch (e) {}
+      });
+    })();
+
     /* ===== Modal de consulta anónima ===== */
     const cModal = document.getElementById('contactModal');
     const cForm = document.getElementById('contactForm');
@@ -94,7 +127,7 @@ const {
     function openContactModal(){
       const a = Math.floor(Math.random() * 6) + 2, b = Math.floor(Math.random() * 6) + 2;
       cExpected = a + b;
-      document.getElementById('cf-human-q').textContent = 'Verificación: ¿cuánto es ' + a + ' + ' + b + '?';
+      document.getElementById('cf-human-q').textContent = L('Verificación: ¿cuánto es ', 'Verification: what is ') + a + ' + ' + b + '?';
       document.getElementById('cf-human').value = '';
       setMsg('', 'hint');
       cModal.classList.add('active');
@@ -116,24 +149,24 @@ const {
       const website = cForm.website.value;
       const elapsed = Date.now() - cOpenedAt;
       if (website) { closeContactModal(); return; }
-      if (elapsed < 3000) { setMsg('Esperá un segundo antes de enviar.', 'err'); return; }
-      if (!nombre || !email || !mensaje) { setMsg('Completá nombre, email y mensaje.', 'err'); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setMsg('El email no parece válido.', 'err'); return; }
-      if (parseInt(human, 10) !== cExpected) { setMsg('La verificación es incorrecta. Probá de nuevo.', 'err'); return; }
-      cSubmit.disabled = true; setMsg('Enviando…', 'hint');
+      if (elapsed < 3000) { setMsg(L('Esperá un segundo antes de enviar.', 'Wait a second before sending.'), 'err'); return; }
+      if (!nombre || !email || !mensaje) { setMsg(L('Completá nombre, email y mensaje.', 'Please fill in name, email and message.'), 'err'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setMsg(L('El email no parece válido.', 'That email doesn\'t look valid.'), 'err'); return; }
+      if (parseInt(human, 10) !== cExpected) { setMsg(L('La verificación es incorrecta. Probá de nuevo.', 'The verification is incorrect. Try again.'), 'err'); return; }
+      cSubmit.disabled = true; setMsg(L('Enviando…', 'Sending…'), 'hint');
       try {
         const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ nombre, email, mensaje, website, human, elapsed }) });
         if (res.ok) {
-          setMsg('¡Listo! Tu consulta llegó. Te respondo pronto.', 'ok');
+          setMsg(L('¡Listo! Tu consulta llegó. Te respondo pronto.', 'Done! Your message arrived. I\'ll get back to you soon.'), 'ok');
           cForm.reset();
           setTimeout(closeContactModal, 1800);
         } else {
           const data = await res.json().catch(() => ({}));
-          setMsg(data.error || 'No se pudo enviar. Probá por mail: santi.creide@gmail.com', 'err');
+          setMsg(data.error || L('No se pudo enviar. Probá por mail: santi.creide@gmail.com', 'Couldn\'t send. Try email: santi.creide@gmail.com'), 'err');
           cSubmit.disabled = false;
         }
       } catch (err) {
-        setMsg('No hay servidor de mensajes activo. Escribime a santi.creide@gmail.com', 'err');
+        setMsg(L('No hay servidor de mensajes activo. Escribime a santi.creide@gmail.com', 'No message server active. Email me at santi.creide@gmail.com'), 'err');
         cSubmit.disabled = false;
       }
     });

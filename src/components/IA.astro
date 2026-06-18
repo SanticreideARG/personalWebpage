@@ -3,39 +3,46 @@ const bloques = [
   {
     num: '01',
     title: 'Agentes de frontera',
+    title_en: 'Frontier agents',
     desc: 'Integración de los modelos líderes — Claude, GPT y Gemini — al producto o al flujo de trabajo. La potencia de punta cuando el caso lo justifica.',
+    desc_en: 'Integrating the leading models — Claude, GPT and Gemini — into the product or workflow. Cutting-edge power when the case justifies it.',
     tags: ['Claude', 'GPT', 'Gemini'],
   },
   {
     num: '02',
     title: 'Spec-Driven Development',
     desc: 'Desarrollo guiado por especificación: primero el qué y el cómo, escrito y acordado; después la implementación. Menos retrabajo y resultados que se pueden auditar.',
+    desc_en: 'Specification-driven development: first the what and the how, written and agreed; then the implementation. Less rework and auditable results.',
     tags: ['Spec-first', 'Ops', 'Workflows'],
   },
   {
     num: '03',
     title: 'Agentes internos',
+    title_en: 'Internal agents',
     desc: 'Implementación de agentes propios — Open Claw y Hermes — para tareas internas: orquestación, soporte y automatización con contexto real del negocio.',
+    desc_en: 'Building in-house agents — Open Claw and Hermes — for internal tasks: orchestration, support and automation with real business context.',
     tags: ['Open Claw', 'Hermes'],
   },
   {
     num: '04',
     title: 'IA local y privada',
+    title_en: 'Local & private AI',
     desc: 'Infraestructura de IA on-premise con Ollama y modelos libres. Tus datos no salen de tu servidor — privacidad y costo bajo control.',
+    desc_en: 'On-premise AI infrastructure with Ollama and open models. Your data never leaves your server — privacy and cost under control.',
     tags: ['Ollama', 'Mistral', 'Qwen', 'Llama'],
   },
 ];
 ---
 <section class="ia" id="ia">
-  <div class="s-eyebrow reveal">Inteligencia Artificial</div>
-  <h2 class="s-title reveal">Soluciones para cada <em>necesidad.</em></h2>
-  <p class="s-body reveal">La IA no es una sola herramienta ni una sola receta. Según el caso, integro modelos de frontera, armo agentes a medida o monto infraestructura local — lo que el problema (y el presupuesto) pida.</p>
+  <div class="s-eyebrow reveal" data-en="Artificial Intelligence">Inteligencia Artificial</div>
+  <h2 class="s-title reveal" data-en="Solutions for every <em>need.</em>">Soluciones para cada <em>necesidad.</em></h2>
+  <p class="s-body reveal" data-en="AI isn't a single tool or a single recipe. Depending on the case, I integrate frontier models, build custom agents or set up local infrastructure — whatever the problem (and the budget) calls for.">La IA no es una sola herramienta ni una sola receta. Según el caso, integro modelos de frontera, armo agentes a medida o monto infraestructura local — lo que el problema (y el presupuesto) pida.</p>
   <div class="ia-grid reveal">
     {bloques.map((b) => (
       <div class="ia-card">
         <div class="ia-num">{b.num}</div>
-        <h3>{b.title}</h3>
-        <p>{b.desc}</p>
+        <h3 data-en={b.title_en}>{b.title}</h3>
+        <p data-en={b.desc_en}>{b.desc}</p>
         <div class="ia-tags">
           {b.tags.map((t) => (<span class="ia-tag">{t}</span>))}
         </div>

@@ -1,26 +1,26 @@
 ---
 const servicios = [
-  { num: '01', icon: '⚙️', title: 'Automatización de Workflow', desc: 'Eliminamos tareas manuales y repetitivas. Pedidos, notificaciones, tickets, reportes — todo fluye solo.', tag: 'Especialidad core', dest: true },
-  { num: '02', icon: '📊', title: 'Gestión Integral & CRM', desc: 'Panel único para administrar clientes, pedidos, métricas y operaciones. Toda la información en un solo lugar.', tag: 'Filament · Laravel' },
-  { num: '03', icon: '💬', title: 'WhatsApp & Chatbots', desc: 'Integración de WhatsApp Business al sistema. Bots con contexto real del negocio, atención 24/7 sin intervención.', tag: 'n8n · Evolution API', dest: true },
-  { num: '04', icon: '📣', title: 'Marketing Digital Integrado', desc: 'Campañas por WhatsApp, email y redes sociales conectadas al CRM. Segmentación real por comportamiento de compra.', tag: 'Redes · Email' },
-  { num: '05', icon: '🏗️', title: 'Asesoría Funcional', desc: 'Análisis del negocio antes del código. Diseño de flujos, relevamiento de procesos y arquitectura de solución a medida.', tag: 'Consultoría' },
-  { num: '06', icon: '🖥️', title: 'Infraestructura & DevOps', desc: 'Servidores Linux, Docker, deployment, backups automáticos. Tu sistema corre en tu propio hierro, sin depender de la nube.', tag: 'Linux · Docker' },
+  { num: '01', icon: '⚙️', title: 'Automatización de Workflow', title_en: 'Workflow Automation', desc: 'Eliminamos tareas manuales y repetitivas. Pedidos, notificaciones, tickets, reportes — todo fluye solo.', desc_en: 'We remove manual, repetitive tasks. Orders, notifications, tickets, reports — everything flows on its own.', tag: 'Especialidad core', tag_en: 'Core specialty', dest: true },
+  { num: '02', icon: '📊', title: 'Gestión Integral & CRM', title_en: 'Full Management & CRM', desc: 'Panel único para administrar clientes, pedidos, métricas y operaciones. Toda la información en un solo lugar.', desc_en: 'A single panel to manage clients, orders, metrics and operations. All the information in one place.', tag: 'Filament · Laravel' },
+  { num: '03', icon: '💬', title: 'WhatsApp & Chatbots', desc: 'Integración de WhatsApp Business al sistema. Bots con contexto real del negocio, atención 24/7 sin intervención.', desc_en: 'WhatsApp Business integrated into the system. Bots with real business context, 24/7 support with no intervention.', tag: 'n8n · Evolution API', dest: true },
+  { num: '04', icon: '📣', title: 'Marketing Digital Integrado', title_en: 'Integrated Digital Marketing', desc: 'Campañas por WhatsApp, email y redes sociales conectadas al CRM. Segmentación real por comportamiento de compra.', desc_en: 'Campaigns over WhatsApp, email and social media connected to the CRM. Real segmentation by purchase behavior.', tag: 'Redes · Email', tag_en: 'Social · Email' },
+  { num: '05', icon: '🏗️', title: 'Asesoría Funcional', title_en: 'Functional Consulting', desc: 'Análisis del negocio antes del código. Diseño de flujos, relevamiento de procesos y arquitectura de solución a medida.', desc_en: 'Business analysis before code. Flow design, process discovery and custom solution architecture.', tag: 'Consultoría', tag_en: 'Consulting' },
+  { num: '06', icon: '🖥️', title: 'Infraestructura & DevOps', title_en: 'Infrastructure & DevOps', desc: 'Servidores Linux, Docker, deployment, backups automáticos. Tu sistema corre en tu propio hierro, sin depender de la nube.', desc_en: 'Linux servers, Docker, deployment, automatic backups. Your system runs on your own hardware, no cloud dependency.', tag: 'Linux · Docker' },
 ];
 ---
 <section class="servicios" id="servicios">
   <div class="servicios-intro">
-    <div class="reveal"><div class="s-eyebrow">En qué trabajo</div><h2 class="s-title">Y si necesitás una mano, <em>esto hago.</em></h2></div>
-    <div class="reveal"><p class="s-body" style="margin-top:0">Además de mis proyectos personales, me dedico profesionalmente a esto. Si tenés una empresa o una idea dando vueltas, capaz algo de acá te sirva. Me interesa <strong style="color:var(--blanco)">entender el problema antes que la herramienta</strong> — el mejor sistema es el que la gente realmente usa.</p></div>
+    <div class="reveal"><div class="s-eyebrow" data-en="What I do">En qué trabajo</div><h2 class="s-title" data-en="And if you need a hand, <em>this is what I do.</em>">Y si necesitás una mano, <em>esto hago.</em></h2></div>
+    <div class="reveal"><p class="s-body" style="margin-top:0" data-en={'Beyond my personal projects, this is what I do professionally. If you run a company or have an idea floating around, maybe something here helps. I care about <strong style="color:var(--blanco)">understanding the problem before the tool</strong> — the best system is the one people actually use.'}>Además de mis proyectos personales, me dedico profesionalmente a esto. Si tenés una empresa o una idea dando vueltas, capaz algo de acá te sirva. Me interesa <strong style="color:var(--blanco)">entender el problema antes que la herramienta</strong> — el mejor sistema es el que la gente realmente usa.</p></div>
   </div>
   <div class="servicios-grid reveal">
     {servicios.map((s) => (
       <div class="servicio-card">
         <div class="servicio-num">{s.num}</div>
         <span class="servicio-icon">{s.icon}</span>
-        <h3>{s.title}</h3>
-        <p>{s.desc}</p>
-        <span class={'servicio-tag' + (s.dest ? ' dest' : '')}>{s.tag}</span>
+        <h3 data-en={s.title_en}>{s.title}</h3>
+        <p data-en={s.desc_en}>{s.desc}</p>
+        <span class={'servicio-tag' + (s.dest ? ' dest' : '')} data-en={s.tag_en}>{s.tag}</span>
       </div>
     ))}
   </div>

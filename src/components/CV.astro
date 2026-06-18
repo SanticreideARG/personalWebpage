@@ -1,58 +1,58 @@
 ---
 const experiencia = [
-  { when: 'Actualidad', what: 'Casa Ferracioli S.A. — Sector Sistemas', where: 'Administración de infraestructura, soporte y desarrollo interno en empresa comercial.' },
-  { when: '2024 – 2025', what: 'After Wire — Infraestructura & Suministros', where: 'Infraestructura de red (MTCNA), gestión de depósito y compras.' },
-  { when: '2012 – 2021', what: 'Casino Magic Neuquén — Operaciones', where: '9 años en operaciones. Trabajo bajo presión y atención al cliente.' },
-  { when: '2009', what: 'COTESMA — Pasantía en Sistemas', where: 'Primer contacto profesional con telecomunicaciones.' },
+  { when: 'Actualidad', when_en: 'Present', what: 'Casa Ferracioli S.A. — Sector Sistemas', what_en: 'Casa Ferracioli S.A. — IT Department', where: 'Administración de infraestructura, soporte y desarrollo interno en empresa comercial.', where_en: 'Infrastructure administration, support and in-house development at a commercial company.' },
+  { when: '2024 – 2025', what: 'After Wire — Infraestructura & Suministros', what_en: 'After Wire — Infrastructure & Supplies', where: 'Infraestructura de red (MTCNA), gestión de depósito y compras.', where_en: 'Network infrastructure (MTCNA), warehouse management and purchasing.' },
+  { when: '2012 – 2021', what: 'Casino Magic Neuquén — Operaciones', what_en: 'Casino Magic Neuquén — Operations', where: '9 años en operaciones. Trabajo bajo presión y atención al cliente.', where_en: '9 years in operations. Working under pressure and customer service.' },
+  { when: '2009', what: 'COTESMA — Pasantía en Sistemas', what_en: 'COTESMA — IT Internship', where: 'Primer contacto profesional con telecomunicaciones.', where_en: 'First professional contact with telecommunications.' },
 ];
 const formacion = [
-  { when: '2024', what: 'Carrera Frontend React', where: 'Coderhouse' },
-  { when: '2025', what: 'Auxiliar Electricista', where: 'ISAC · CALF Neuquén' },
-  { when: 'Modular', what: 'Fundación Telefónica Movistar', where: '12 certificaciones: programación, Big Data, marketing digital, diseño web.' },
+  { when: '2024', what: 'Carrera Frontend React', what_en: 'Frontend React Program', where: 'Coderhouse' },
+  { when: '2025', what: 'Auxiliar Electricista', what_en: 'Electrician Assistant', where: 'ISAC · CALF Neuquén' },
+  { when: 'Modular', what: 'Fundación Telefónica Movistar', where: '12 certificaciones: programación, Big Data, marketing digital, diseño web.', where_en: '12 certifications: programming, Big Data, digital marketing, web design.' },
 ];
 const skills = ['Laravel', 'PHP 8.3', 'Filament', 'Livewire', 'Alpine.js', 'Tailwind', 'React', 'JavaScript', 'Node.js', 'MySQL', 'PostgreSQL', 'n8n', 'Docker', 'Linux'];
 const pdfHref = '/assets/Santiago%20Creide%20%E2%80%94%20Curriculum%20Vitae%202026.pdf';
 const onlineHref = '/assets/CV%20Santiago%20Creide%20-%20Standalone.html';
 ---
 <section class="cv" id="cv">
-  <div class="s-eyebrow reveal">Curriculum Vitae</div>
-  <h2 class="s-title reveal">El recorrido, en <em>una página.</em></h2>
+  <div class="s-eyebrow reveal" data-en="Resume">Curriculum Vitae</div>
+  <h2 class="s-title reveal" data-en="The journey, in <em>one page.</em>">El recorrido, en <em>una página.</em></h2>
   <div class="cv-grid">
     <div class="reveal">
       <div class="cv-block">
-        <div class="cv-block-title">Experiencia</div>
+        <div class="cv-block-title" data-en="Experience">Experiencia</div>
         {experiencia.map((e) => (
-          <div class="cv-row"><div class="cv-when">{e.when}</div><div class="cv-what">{e.what}</div><div class="cv-where">{e.where}</div></div>
+          <div class="cv-row"><div class="cv-when" data-en={e.when_en}>{e.when}</div><div class="cv-what" data-en={e.what_en}>{e.what}</div><div class="cv-where" data-en={e.where_en}>{e.where}</div></div>
         ))}
       </div>
       <div class="cv-block">
-        <div class="cv-block-title">Educación & Formación</div>
+        <div class="cv-block-title" data-en="Education & Training">Educación & Formación</div>
         {formacion.map((e) => (
-          <div class="cv-row"><div class="cv-when">{e.when}</div><div class="cv-what">{e.what}</div><div class="cv-where">{e.where}</div></div>
+          <div class="cv-row"><div class="cv-when" data-en={e.when_en}>{e.when}</div><div class="cv-what" data-en={e.what_en}>{e.what}</div><div class="cv-where" data-en={e.where_en}>{e.where}</div></div>
         ))}
       </div>
     </div>
     <div class="reveal">
       <div class="cv-block">
-        <div class="cv-block-title">Foco profesional</div>
-        <div class="cv-row"><div class="cv-what" style="margin-bottom:8px">Workflow Automation & Gestión integral</div><div class="cv-where">Entender el negocio antes de escribir código. Construir sistemas que la gente realmente use.</div></div>
+        <div class="cv-block-title" data-en="Professional focus">Foco profesional</div>
+        <div class="cv-row"><div class="cv-what" style="margin-bottom:8px" data-en="Workflow Automation & full management">Workflow Automation & Gestión integral</div><div class="cv-where" data-en="Understanding the business before writing code. Building systems people actually use.">Entender el negocio antes de escribir código. Construir sistemas que la gente realmente use.</div></div>
       </div>
       <div class="cv-block">
-        <div class="cv-block-title">Stack & herramientas</div>
+        <div class="cv-block-title" data-en="Stack & tools">Stack & herramientas</div>
         <div class="cv-skills">
           {skills.map((s) => (<span class="cv-pill">{s}</span>))}
         </div>
       </div>
       <div class="cv-block">
-        <div class="cv-block-title">Idiomas</div>
+        <div class="cv-block-title" data-en="Languages">Idiomas</div>
         <div class="cv-langs">
-          <div class="cv-lang"><strong>Español</strong><span>Nativo</span></div>
-          <div class="cv-lang"><strong>Inglés</strong><span>C1 · EF SET</span></div>
+          <div class="cv-lang"><strong data-en="Spanish">Español</strong><span data-en="Native">Nativo</span></div>
+          <div class="cv-lang"><strong data-en="English">Inglés</strong><span>C1 · EF SET</span></div>
         </div>
       </div>
       <div class="cv-actions">
-        <a href={pdfHref} target="_blank" class="btn-primary">Descargar PDF <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v9M3 6l4 4 4-4M1 13h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href={onlineHref} target="_blank" class="btn-outline" onclick={`openFrame('${onlineHref}','Curriculum Vitae — Santiago Creide',false);return false;`}>Ver online</a>
+        <a href={pdfHref} target="_blank" class="btn-primary"><span data-en="Download PDF">Descargar PDF</span> <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1v9M3 6l4 4 4-4M1 13h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href={onlineHref} target="_blank" class="btn-outline" data-en="View online" onclick={`openFrame('${onlineHref}','Curriculum Vitae — Santiago Creide',false);return false;`}>Ver online</a>
       </div>
     </div>
   </div>
