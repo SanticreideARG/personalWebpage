@@ -221,28 +221,37 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:rgba(var(
 .ia-tags{display:flex;flex-wrap:wrap;gap:8px}
 .ia-tag{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.08em;padding:5px 11px;border-radius:2px;background:rgba(var(--green-rgb),.1);border:1px solid rgba(var(--green-rgb),.22);color:var(--verde-claro)}
 @media(max-width:900px){.ia-grid{grid-template-columns:1fr}}
-/* ===== Showcase proyectos personales: Grimorio destacado + PoketGotchi compacto ===== */
-.personal-showcase{display:grid;grid-template-columns:1.65fr 1fr;gap:3px}
+/* ===== Showcase proyectos personales: Grimorio + Poker destacados, PoketGotchi compacto ===== */
+.personal-showcase{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"grim poker" "poket poket";gap:3px}
+.pers-grim{grid-area:grim}
+.pers-poker{grid-area:poker}
+.pers-poket{grid-area:poket}
 .pers-featured{background:var(--negro);border:1px solid rgba(196,98,45,.2);overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s,transform .3s}
 .pers-featured:hover{border-color:rgba(196,98,45,.38);transform:translateY(-4px)}
-.pers-featured-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--musgo)}
 .pers-shot{position:relative;overflow:hidden;cursor:none}
-.pers-featured-shots .pers-shot img{width:100%;aspect-ratio:2/3;height:auto;object-fit:cover;object-position:center top;display:block;transition:transform .5s ease,filter .4s ease}
+.pers-shot img{display:block;transition:transform .5s ease,filter .4s ease}
 .pers-shot:hover img{transform:scale(1.05)}
-.pers-featured-body{padding:34px 34px 38px}
-.pers-featured-body h4{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--blanco);margin:14px 0 12px}
-.pers-featured-body p{font-size:.9rem;color:rgba(var(--text-rgb),.58);line-height:1.75;margin-bottom:22px;max-width:560px}
-.pers-compact{background:var(--tierra);border:1px solid rgba(var(--text-rgb),.05);overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s,transform .3s}
-.pers-compact:hover{border-color:rgba(var(--green-rgb),.3);transform:translateY(-4px)}
+/* Grimorio: 3 verticales uniformes */
+.pers-featured-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--musgo)}
+.pers-featured-shots .pers-shot img{width:100%;aspect-ratio:2/3;height:auto;object-fit:cover;object-position:center top}
+/* Poker: 2 verticales arriba, 2 horizontales abajo (alturas naturales) */
+.pers-poker-shots{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--musgo)}
+.pers-poker-shots .pers-shot img{width:100%;height:auto;object-fit:cover}
+.pers-featured-body{padding:30px 30px 34px;display:flex;flex-direction:column;flex:1}
+.pers-featured-body h4{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;color:var(--blanco);margin:12px 0 10px}
+.pers-featured-body p{font-size:.85rem;color:rgba(var(--text-rgb),.58);line-height:1.7;margin-bottom:20px;max-width:520px}
+/* PoketGotchi: barra compacta horizontal a todo el ancho */
+.pers-poket{background:var(--tierra);border:1px solid rgba(var(--text-rgb),.05);overflow:hidden;display:grid;grid-template-columns:240px 1fr;transition:border-color .3s,transform .3s}
+.pers-poket:hover{border-color:rgba(var(--green-rgb),.3);transform:translateY(-4px)}
 .pers-compact-shot{position:relative;overflow:hidden;cursor:none}
-.pers-compact-shot img{width:100%;height:170px;object-fit:cover;display:block;transition:transform .5s ease}
-.pers-compact-shot:hover img{transform:scale(1.05)}
-.pers-compact-body{padding:24px 24px 28px;display:flex;flex-direction:column;flex:1}
+.pers-poket .pers-compact-shot img{width:100%;height:100%;min-height:180px;object-fit:cover;display:block;transition:transform .5s ease}
+.pers-poket .pers-compact-shot:hover img{transform:scale(1.05)}
+.pers-compact-body{padding:24px 28px 26px;display:flex;flex-direction:column;flex:1}
 .pers-compact-body h4{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--crema);margin:10px 0 8px}
-.pers-compact-body p{font-size:.8rem;color:rgba(var(--text-rgb),.5);line-height:1.65;margin-bottom:16px}
+.pers-compact-body p{font-size:.82rem;color:rgba(var(--text-rgb),.55);line-height:1.65;margin-bottom:16px;max-width:660px}
 .pers-mini-tag{align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;border-radius:100px;background:rgba(var(--text-rgb),.06);color:rgba(var(--text-rgb),.55);border:1px solid rgba(var(--text-rgb),.1)}
-.pers-featured .personal-links,.pers-compact .personal-links{margin-top:auto}
-@media(max-width:900px){.personal-showcase{grid-template-columns:1fr}}
+.pers-featured .personal-links,.pers-poket .personal-links{margin-top:auto}
+@media(max-width:900px){.personal-showcase{grid-template-columns:1fr;grid-template-areas:"grim" "poker" "poket"}.pers-poket{grid-template-columns:1fr}}
 /* ===== CV ===== */
 .cv{background:var(--negro);position:relative;overflow:hidden}
 .cv::before{content:'';position:absolute;top:-150px;left:-150px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(196,98,45,.06) 0%,transparent 70%)}
@@ -316,6 +325,8 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:rgba(var(
 .viewer-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--crema);line-height:1.2}
 .viewer-body{flex:1;overflow:auto;background:var(--negro)}
 .viewer-body iframe{width:100%;height:100%;border:0;display:block;background:#fff}
+.viewer-body.viewer-imgwrap{display:flex;align-items:center;justify-content:center;padding:20px;background:#0d100a}
+.viewer-img{max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;-webkit-user-drag:none;user-select:none;-webkit-user-select:none}
 .viewer-body.protected{user-select:none;-webkit-user-select:none}
 .viewer-prose{padding:48px 56px;max-width:680px;margin:0 auto;color:rgba(var(--text-rgb),.78)}
 .viewer-prose .vp-meta{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--naranja-suave);margin-bottom:14px}

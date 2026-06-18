@@ -162,18 +162,30 @@ const {
       viewerBody.scrollTop = 0;
       showViewer();
     }
+    function openImage(src, title){
+      viewerTitle.textContent = title;
+      viewerBody.className = 'viewer-body protected viewer-imgwrap';
+      const img = document.createElement('img');
+      img.src = src; img.alt = title; img.className = 'viewer-img'; img.draggable = false;
+      viewerBody.innerHTML = ''; viewerBody.appendChild(img);
+      showViewer();
+    }
     viewerBody.addEventListener('contextmenu', e => { if (viewerBody.classList.contains('protected')) e.preventDefault(); });
     viewerBody.addEventListener('dragstart', e => { if (viewerBody.classList.contains('protected')) e.preventDefault(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape' && viewer.classList.contains('active')) closeViewer(); });
     document.querySelectorAll('.cert-card').forEach(a => {
       const href = a.getAttribute('href') || '';
-      if (href.toLowerCase().endsWith('.pdf')) {
+      const lower = href.toLowerCase();
+      const isPdf = lower.endsWith('.pdf');
+      const isImg = /\.(png|jpe?g|webp|gif)$/.test(lower);
+      if (isPdf || isImg) {
         a.addEventListener('click', e => {
           e.preventDefault();
           const issuer = a.querySelector('.cert-issuer');
           const name = a.querySelector('.cert-name');
           const title = ((issuer ? issuer.textContent + ' · ' : '') + (name ? name.textContent : 'Certificado'));
-          openFrame(href, title, true);
+          if (isPdf) openFrame(href, title, true);
+          else openImage(href, title);
         });
       }
     });

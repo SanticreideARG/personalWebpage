@@ -1,7 +1,9 @@
-// Certificaciones. `external:true` abre en pestaña nueva (links de verificación).
-// El resto son PDFs en /public/assets/certificados que se abren en el visor.
+// Certificaciones. Los links http (external) abren en pestaña nueva.
+// Los PDF y PNG en /public/assets/certificados se abren en el visor.
 export const certificados = [
-  { issuer: 'Coderhouse', name: 'Desarrollo Web · Frontend React', meta: '2024', action: 'verificar ↗', href: 'https://www.coderhouse.com/certificados/62efd459bdbf6d022979cae3', external: true },
+  { issuer: 'Coderhouse', name: 'JavaScript', meta: 'Certificado', action: 'ver ↗', href: '/assets/certificados/Coderhouse%20Javascript.png' },
+  { issuer: 'Coderhouse', name: 'Desarrollo Web', meta: 'Certificado', action: 'ver ↗', href: '/assets/certificados/Coderhouse%20Desarrollo%20Web.png' },
+  { issuer: 'Coderhouse', name: 'React', meta: 'Certificado', action: 'ver ↗', href: '/assets/certificados/Coderhouse%20React.png' },
   { issuer: 'EF SET', name: 'English Certificate · Nivel C1', meta: 'Avanzado', action: 'verificar ↗', href: 'https://efset.org/cert/UdvoDC/', external: true },
   { issuer: 'Fund. Telefónica', name: 'Diseño Web con HTML5 + CSS', meta: 'Ed. 8', action: 'PDF ↗', href: '/assets/certificados/AR%20Dise%C3%B1o%20Web%20con%20HTML5%20+%20CSS%20-%20FTM%20Ed%208.pdf' },
   { issuer: 'Fund. Telefónica', name: 'Programación con JavaScript', meta: 'Ed. 8', action: 'PDF ↗', href: '/assets/certificados/AR%20Programaci%C3%B3n%20con%20JavaScript%20-%20FTM%20Ed%208.pdf' },
