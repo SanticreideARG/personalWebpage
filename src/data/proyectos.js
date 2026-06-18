@@ -4,7 +4,7 @@
 export const grimorio = {
   name: 'Grimorio',
   badge: 'Mi primer juego en producción · v1.0',
-  shots: ['/images/projects/grimorio-1.jpg', '/images/projects/grimorio-2.jpg'],
+  shots: ['/images/projects/grimorio1.jpg', '/images/projects/grimorio2.jpg', '/images/projects/grimorio3.jpg'],
   desc: 'Mi primer juego online desplegado en producción. Un RPG cooperativo por turnos, de fantasía oscura, con onda de juego de mesa. Login con Google, partidas guardadas en la nube, dificultad ajustable y un sistema de combate con dados y mecánicas avanzadas. Construido en React 19 + Vite + Zustand, pensado para desktop y mobile.',
   live: 'https://grimorio-hazel.vercel.app/',
   repo: 'https://github.com/SanticreideARG/Grimorio',

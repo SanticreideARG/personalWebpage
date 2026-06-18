@@ -218,9 +218,9 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:rgba(var(
 .personal-showcase{display:grid;grid-template-columns:1.65fr 1fr;gap:3px}
 .pers-featured{background:var(--negro);border:1px solid rgba(196,98,45,.2);overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s,transform .3s}
 .pers-featured:hover{border-color:rgba(196,98,45,.38);transform:translateY(-4px)}
-.pers-featured-shots{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--musgo)}
+.pers-featured-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--musgo)}
 .pers-shot{position:relative;overflow:hidden;cursor:none}
-.pers-featured-shots .pers-shot img{width:100%;height:260px;object-fit:cover;display:block;transition:transform .5s ease,filter .4s ease}
+.pers-featured-shots .pers-shot img{width:100%;aspect-ratio:2/3;height:auto;object-fit:cover;object-position:center top;display:block;transition:transform .5s ease,filter .4s ease}
 .pers-shot:hover img{transform:scale(1.05)}
 .pers-featured-body{padding:34px 34px 38px}
 .pers-featured-body h4{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--blanco);margin:14px 0 12px}
@@ -235,7 +235,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:rgba(var(
 .pers-compact-body p{font-size:.8rem;color:rgba(var(--text-rgb),.5);line-height:1.65;margin-bottom:16px}
 .pers-mini-tag{align-self:flex-start;font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;border-radius:100px;background:rgba(var(--text-rgb),.06);color:rgba(var(--text-rgb),.55);border:1px solid rgba(var(--text-rgb),.1)}
 .pers-featured .personal-links,.pers-compact .personal-links{margin-top:auto}
-@media(max-width:900px){.personal-showcase{grid-template-columns:1fr}.pers-featured-shots .pers-shot img{height:200px}}
+@media(max-width:900px){.personal-showcase{grid-template-columns:1fr}}
 /* ===== CV ===== */
 .cv{background:var(--negro);position:relative;overflow:hidden}
 .cv::before{content:'';position:absolute;top:-150px;left:-150px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(196,98,45,.06) 0%,transparent 70%)}
