@@ -5,7 +5,7 @@ import { notas } from '../data/notas.js';
   <div class="s-eyebrow reveal" data-en="Notes">Notas</div>
   <h2 class="s-title reveal" data-en="Things I'm <em>learning.</em>">Cosas que <em>voy aprendiendo.</em></h2>
   <p class="s-body reveal" data-en="Loose notes on what I build, break and put back together. No tutorial pretensions — more of a public notebook.">Apuntes sueltos sobre lo que construyo, rompo y vuelvo a armar. Sin pretensión de tutorial — más bien un cuaderno público.</p>
-  <div class="notas-grid reveal">
+  <div class="notas-grid reveal-stagger">
     {notas.map((n) => (
       <a href="#" class="nota-card" onclick={`openNote('${n.id}');return false;`}>
         <div class="nota-date" data-en={n.label_en}>{n.label}</div>

@@ -36,6 +36,7 @@ const {
   </script>
 </head>
 <body>
+  <div class="scroll-progress" id="scrollProgress"></div>
   <div class="cursor" id="cursor"></div>
   <div class="cursor-ring" id="cursorRing"></div>
   <Nav />
@@ -59,9 +60,75 @@ const {
       el.addEventListener('mouseleave', () => { cursor.style.width = '8px'; cursor.style.height = '8px'; ring.style.width = '32px'; ring.style.height = '32px'; });
     });
 
-    /* ===== Reveal al hacer scroll ===== */
-    const observer = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: .08 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    /* ===== Efectos de scroll (reveals, stagger, wipe, parallax, progreso, scroll-spy) ===== */
+    (function(){
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Reveals: fade-up, stagger y wipe (con fallback si no hay IntersectionObserver)
+      const revealEls = document.querySelectorAll('.reveal, .reveal-stagger, .reveal-wipe');
+      if (!('IntersectionObserver' in window)) {
+        revealEls.forEach(el => el.classList.add('visible'));
+      } else {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            e.target.classList.add('visible');
+            if (e.target.classList.contains('reveal-stagger')) {
+              [...e.target.children].forEach((c, i) => { c.style.transitionDelay = (i * 0.08) + 's'; });
+            }
+            io.unobserve(e.target);
+          });
+        }, { threshold: .1 });
+        revealEls.forEach(el => io.observe(el));
+      }
+
+      if (reduce) return; // sin parallax ni motion adicional
+
+      // Barra de progreso de scroll
+      const bar = document.getElementById('scrollProgress');
+      // Scroll-spy
+      const navLinks = new Map();
+      document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => navLinks.set(a.getAttribute('href').slice(1), a));
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          navLinks.forEach(a => a.classList.remove('active'));
+          const a = navLinks.get(e.target.id);
+          if (a) a.classList.add('active');
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
+
+      // Parallax + barra de progreso + hero que se despide (en un solo rAF)
+      const hero = document.querySelector('.hero');
+      const heroBg = document.querySelector('.hero-bg');
+      const heroContent = document.querySelector('.hero-content');
+      const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
+      let ticking = false;
+      function onScroll(){
+        const y = window.scrollY;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        if (bar) bar.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
+        const hh = hero ? hero.offsetHeight : 0;
+        if (y < hh + 100) {
+          if (heroBg) heroBg.style.transform = 'translateY(' + (y * 0.35) + 'px)';
+          if (heroContent) {
+            heroContent.style.transform = 'translateY(' + (y * 0.18) + 'px)';
+            heroContent.style.opacity = Math.max(0, 1 - y / (hh * 0.65));
+          }
+        }
+        parallaxEls.forEach(el => {
+          const r = el.getBoundingClientRect();
+          const speed = parseFloat(el.dataset.parallax) || 0.08;
+          const offset = r.top + r.height / 2 - window.innerHeight / 2;
+          el.style.translate = '0 ' + (offset * -speed).toFixed(1) + 'px';
+        });
+        ticking = false;
+      }
+      window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(onScroll); ticking = true; } }, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      onScroll();
+    })();
 
     /* ===== Smooth scroll para anclas ===== */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
