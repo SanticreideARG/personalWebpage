@@ -4,7 +4,7 @@ import { certificados } from '../data/certificados.js';
 <section class="certificaciones" id="certificaciones">
   <div class="s-eyebrow reveal" data-en="Certifications">Certificaciones</div>
   <h2 class="s-title reveal" data-en="Papers that back up the <em>journey.</em>">Papeles que respaldan el <em>camino.</em></h2>
-  <div class="cert-grid reveal-stagger">
+  <div class="cert-grid reveal">
     {certificados.map((c) => (
       <a href={c.href} target="_blank" class="cert-card">
         <div class="cert-issuer">{c.issuer}</div>

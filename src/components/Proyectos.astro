@@ -22,7 +22,7 @@ import { grimorio, pokerTournament, poketgotchi } from '../data/proyectos.js';
     <p class="proyectos-sub-desc" data-en="What I build when no one asks me to — to learn, play and test ideas. Here technology is the excuse, not the goal.">Lo que construyo cuando nadie me lo pide — para aprender, jugar y probar ideas. Acá la tecnología es la excusa, no el objetivo.</p>
     <div class="personal-showcase">
       <article class="pers-featured pers-grim">
-        <div class="pers-featured-shots reveal-wipe">
+        <div class="pers-featured-shots">
           {grimorio.shots.map((s) => (
             <div class="pers-shot" onclick="openLightbox(this)"><img src={s} alt={grimorio.name} loading="lazy" /></div>
           ))}
@@ -38,7 +38,7 @@ import { grimorio, pokerTournament, poketgotchi } from '../data/proyectos.js';
         </div>
       </article>
       <article class="pers-featured pers-poker">
-        <div class="pers-poker-shots reveal-wipe">
+        <div class="pers-poker-shots">
           {pokerTournament.shots.map((s) => (
             <div class="pers-shot" onclick="openLightbox(this)"><img src={s} alt={pokerTournament.name} loading="lazy" /></div>
           ))}
@@ -54,7 +54,7 @@ import { grimorio, pokerTournament, poketgotchi } from '../data/proyectos.js';
         </div>
       </article>
       <article class="pers-compact pers-poket">
-        <div class="pers-compact-shot reveal-wipe" onclick="openLightbox(this)"><img src={poketgotchi.shots[0]} alt={poketgotchi.name} loading="lazy" /></div>
+        <div class="pers-compact-shot" onclick="openLightbox(this)"><img src={poketgotchi.shots[0]} alt={poketgotchi.name} loading="lazy" /></div>
         <div class="pers-compact-body">
           <span class="pers-mini-tag" data-en={poketgotchi.tag_en}>{poketgotchi.tag}</span>
           <h4>{poketgotchi.name}</h4>
