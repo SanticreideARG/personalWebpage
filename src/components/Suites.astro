@@ -1,0 +1,68 @@
+---
+const valores = [
+  { es: 'Sin gastos fijos ni mensualidades', en: 'No fixed costs or monthly fees' },
+  { es: 'Operativa en 30 min de capacitación', en: 'Up and running in 30 min of training' },
+  { es: 'Moderna, rápida y multiplataforma', en: 'Modern, fast and cross-platform' },
+  { es: 'Excelente posicionamiento en Google', en: 'Excellent Google ranking' },
+  { es: 'Protección de tus datos garantizada', en: 'Guaranteed data protection' },
+  { es: 'Sin contratos con restricciones', en: 'No restrictive contracts' },
+];
+const shots = [
+  { src: '/images/suites/suites-landing.jpg', es: 'Landing editable', en: 'Editable landing page' },
+  { src: '/images/suites/suites-calendario.jpg', es: 'Calendario / planner', en: 'Calendar / planner' },
+  { src: '/images/suites/suites-reportes.jpg', es: 'Reportes y ocupación', en: 'Reports and occupancy' },
+  { src: '/images/suites/suites-reservas.jpg', es: 'Reservas online', en: 'Online bookings' },
+];
+const stackPills = ['React 19', 'Vite', 'TypeScript', 'Tailwind v4', 'TanStack Query', 'Hono', 'Postgres', 'Drizzle ORM', 'Better Auth', 'Serverless'];
+const capacidades = [
+  { es: 'Calendario visual tipo planner', en: 'Visual planner-style calendar' },
+  { es: 'Reservas con check-in/out y cancelaciones', en: 'Bookings with check-in/out and cancellations' },
+  { es: 'Registro de huéspedes', en: 'Guest registry' },
+  { es: 'Housekeeping con tareas asignables', en: 'Housekeeping with assignable tasks' },
+  { es: 'Facturación con cargos por consumo', en: 'Billing with consumption charges' },
+  { es: 'Pagos multi-método e impuestos configurables', en: 'Multi-method payments and configurable taxes' },
+  { es: 'Reportes de ocupación con export a Excel', en: 'Occupancy reports with Excel export' },
+  { es: 'Tarifas dinámicas por fechas y fines de semana', en: 'Dynamic rates by date range and weekends' },
+  { es: 'Landing del alojamiento editable desde el panel', en: 'Property landing editable from the panel' },
+  { es: 'Log de auditoría completo, con diff campo por campo', en: 'Full audit log, with field-by-field diff' },
+];
+---
+<section class="suites" id="suites">
+  <div class="suites-head">
+    <div class="s-eyebrow reveal" data-en="My own product · SaaS">Producto propio · SaaS</div>
+    <h2 class="suites-title reveal">Suites Manager<em data-en=" — hotel management with no fixed costs."> — gestión hotelera sin gastos fijos.</em></h2>
+    <p class="suites-lead reveal" data-en="A hotel-management SaaS platform I built from scratch. Fully serverless infrastructure with no fixed server cost: so a small or mid-size property — 3 cabins, a small apart-hotel or a hotel — can manage bookings, billing and its own website without paying royalties or monthly fees.">Una plataforma SaaS de gestión hotelera, de mi autoría. Infraestructura 100% serverless, sin costo de servidor fijo: para que un alojamiento chico o mediano —3 cabañas, un apart o un hotel— gestione reservas, facturación y su propia web sin pagar royalties ni cargos mensuales.</p>
+    <div class="suites-values reveal">
+      {valores.map((v) => (
+        <span class="suites-chip"><span class="suites-check">✓</span><span data-en={v.en}>{v.es}</span></span>
+      ))}
+    </div>
+  </div>
+
+  <div class="suites-shots reveal">
+    {shots.map((s) => (
+      <figure class="suites-shot" onclick="openLightbox(this)">
+        <img src={s.src} alt={s.es} loading="lazy" />
+        <figcaption data-en={s.en}>{s.es}</figcaption>
+      </figure>
+    ))}
+  </div>
+
+  <div class="suites-detail">
+    <div class="suites-block reveal">
+      <div class="suites-block-title" data-en="Stack">Stack</div>
+      <p class="suites-block-text" data-en="Frontend in React 19, Vite, TypeScript and Tailwind CSS v4, with TanStack Query for server state. The backend is a Hono API deployed as a serverless function. Postgres database with Drizzle ORM for end-to-end typing and a custom SQL migration runner. Authentication with Better Auth 1.2 — email/password and Google OAuth.">Frontend en React 19, Vite, TypeScript y Tailwind CSS v4, con TanStack Query para el estado del servidor. El backend es una API Hono desplegada como función serverless. Base de datos Postgres con Drizzle ORM para tipado end-to-end y un runner de migraciones SQL propio. Autenticación con Better Auth 1.2 — email/contraseña y Google OAuth.</p>
+      <div class="suites-pills">
+        {stackPills.map((p) => (<span class="suites-pill">{p}</span>))}
+      </div>
+    </div>
+    <div class="suites-block reveal">
+      <div class="suites-block-title" data-en="What it does">Capacidades</div>
+      <ul class="suites-caps">
+        {capacidades.map((c) => (
+          <li><span class="suites-check">✓</span><span data-en={c.en}>{c.es}</span></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
